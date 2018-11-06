@@ -2,15 +2,15 @@ const EventEmitter = require('events');
 
 const emitter = new EventEmitter();
 
-// Register a Listener
-// emitter.addListener('messageLogged', function() {
-//   console.log('Listener called');
-// });
+// Register a listener
+emitter.on('logging', arg => {
+  console.log('logging', arg);
+}); // given exercise
 
-// Alias "on", that used more often
-emitter.on('messageLogged', function() {
-  console.log('Listener called');
+emitter.on('messageLogged', arg => {
+  console.log('logged', arg);
 });
 
 // Raise an event
-emitter.emit('messageLogged');
+emitter.emit('logging', { data: 'message' }); // given exercise
+emitter.emit('messageLogged', { id: 1, url: 'http://' });
