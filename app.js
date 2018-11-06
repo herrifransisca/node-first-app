@@ -1,14 +1,16 @@
-const fs = require('fs');
+const EventEmitter = require('events');
 
-// const files = fs.readdirSync('./');
-// console.log(files);
+const emitter = new EventEmitter();
 
-// fs.readdir('./', function(err, files) {
-//   if (err) console.log('Error', err);
-//   else console.log('Result', files);
+// Register a Listener
+// emitter.addListener('messageLogged', function() {
+//   console.log('Listener called');
 // });
 
-fs.readdir('$', function(err, files) {
-  if (err) console.log('Error', err);
-  else console.log('Result', files);
+// Alias "on", that used more often
+emitter.on('messageLogged', function() {
+  console.log('Listener called');
 });
+
+// Raise an event
+emitter.emit('messageLogged');
